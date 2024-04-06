@@ -1,82 +1,55 @@
-var button = document.getElementById("enter");
-var input = document.getElementById("userinput");
-var ul = document.querySelector("ul");
-// v2
-var li = document.getElementsByTagName("li");
-// v1
-// var todo = document.querySelectorAll("li");
-var deleteButton = document.getElementsByClassName("delete");
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
 
-// v2
-function strikeThrough(e) {
-    if (e.target.tagName === "LI") {
-        e.target.classList.toggle("done");
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
     }
+  }
 }
-
-function inputLength() {
- return input.value.length;
-}
-
-function createListElement() {
- var li = document.createElement("li");
- li.appendChild(document.createTextNode(input.value));
- ul.appendChild(li);
- input.value = "";
- var newDeleteButton = document.createElement("button");
- newDeleteButton.appendChild(document.createTextNode("Delete"));
- newDeleteButton.classList.add("delete");
- li.appendChild(newDeleteButton);
-}
-
-// function createDeleteButton() {
-//  var newDeleteButton = document.createElement("button");
-//  newDeleteButton.appendChild(document.createTextNode("Delete"));
-//  li.appendChild(newDeleteButton);
-// }
-
-function addListAfterClick() {
- if (inputLength() > 0) {
-  createListElement();
-  // createDeleteButton();
- }
-}
-
-function addListAfterKeydown(event) {
- if (inputLength() > 0 && event.keyCode === 13) {
-  createListElement();
-  // createDeleteButton();
- }
-}
-
-function deleteItemAfterClick(event) {
-  if (event.target.className === "delete") {
-      event.target.parentNode.remove();
-    }
-}
-
-
-// v1
-// function toggleItem(event) {
-//   /** We can access event.currentTarget which refers to the DOM node we have added the event listener to. */
-//   event.currentTarget.classList.toggle("done");
-// }
-
-button.addEventListener("click", addListAfterClick);
-
-input.addEventListener("keydown", addListAfterKeydown);
-
-
-// v1
-// todo.forEach(function(todoItem) {
-//    todoItem.addEventListener("click", toggleItem)
-// });
-
-
-// v2
-ul.addEventListener("click", strikeThrough);
-
-ul.addEventListener("click", deleteItemAfterClick);
-
-
-
