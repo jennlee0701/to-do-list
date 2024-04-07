@@ -7,19 +7,33 @@
 <body>
 	<div id="myDIV" class="header">
 	  <h2>My To Do List</h2>
-	  <p id="first">Get it done today!</p>
-	  <input type="text" id="myInput" placeholder="Task...">
-	  <span onclick="newElement()" class="addBtn">Add</span>
+	  <!-- <p id="first">Get it done today!</p> -->
+	  <input type="text" id="myInput" placeholder="Enter Task">
+	  <input type="text" id="Category" placeholder="Enter Category">
+	  <input type="text" id="Category" placeholder="Enter Client">
+	  <!-- <span onclick="newElement()" class="addBtn">Add</span> -->
+	  <button class="addBtn">Add Task</button>
 	</div>
 
-	<ul id="myUL">
-	  <li>Hit the gym</li>
-	  <li class="checked">Pay bills</li>
-	  <li>Meet George</li>
-	  <li>Buy eggs</li>
-	  <li>Read a book</li>
-	  <li>Organize office</li>
-	</ul>
+	<table id=todoTable>
+		<tr>
+			<td>Status</td>
+			<td>Task</td>
+			<td>Category</td>
+			<td>Client</td>
+			<td>Delete</td>
+		</tr>
+	</table>
+
+	<!-- <ul id="myUL">
+		<li>Hit the gym</li>
+		<li class="checked">Pay bills</li>
+		<li>Meet George</li>
+		<li>Buy eggs</li>
+		<li>Read a book</li>
+		<li>Organize office</li>
+	</ul> -->
+
 	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
